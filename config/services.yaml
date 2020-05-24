@@ -1,0 +1,29 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            bool $debug: '%kernel.debug%'
+            Psr\Container\ContainerInterface $webResponders: !tagged_locator {tag: 'gog.web.responder'}
+            IteratorAggregate $webCommonResponders: !tagged {tag: 'gog.web.common_responder'}
+    _instanceof:
+        GOG\Web\Responder: {tags: ['gog.web.responder']}
+        GOG\Web\CommonResponder: {tags: ['gog.web.common_responder']}
+
+    GOG\:
+        resource: '../src/*'
+        exclude: '../src/Kernel.php'
+
+    GOG\Web\Action\:
+        resource: '../src/Web/Action'
+        tags: ['controller.service_arguments']
+
+    command_handlers:
+        namespace: GOG\Application\Command\Handler\
+        resource: '%kernel.project_dir%/src/Application/Command/Handler/*.php'
+        tags: [{name: messenger.message_handler, bus: command.bus}]
+
+    query_handlers:
+        namespace: GOG\Application\Query\Handler\
+        resource: '%kernel.project_dir%/src/Application/Query/Handler/*.php'
+        tags: [{name: messenger.message_handler, bus: query.bus}]

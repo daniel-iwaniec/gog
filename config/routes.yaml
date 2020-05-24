@@ -1,0 +1,23 @@
+index:
+    path: /
+    controller: GOG\Web\Action\ShowCatalog
+
+catalog:
+    path: /products
+    controller: GOG\Web\Action\ShowCatalog
+    methods: [GET]
+
+addProduct:
+    path: /products
+    controller: GOG\Web\Action\AddProduct
+    methods: [POST]
+
+removeProduct:
+    path: /products/{id<[1-9]\d*>}
+    controller: GOG\Web\Action\RemoveProduct
+    methods: [DELETE]
+
+updateProduct:
+    path: /products/{id<[1-9]\d*>}
+    controller: GOG\Web\Action\UpdateProduct
+    methods: [PATCH]

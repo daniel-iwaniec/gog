@@ -1,0 +1,19 @@
+GOG\Application\Data\Product:
+    product (template):
+        id: '<current()>'
+
+    product_{1} (extends product):
+        name: 'Fallout'
+        price: '199'
+    product_{2} (extends product):
+        name: 'Don’t Starve'
+        price: '299'
+    product_{3} (extends product):
+        name: 'Baldur’s Gate'
+        price: '399'
+    product_{4} (extends product):
+        name: 'Icewind Dale'
+        price: '499'
+    product_{5} (extends product):
+        name: 'Bloodborne'
+        price: '599'
